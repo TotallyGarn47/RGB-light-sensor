@@ -6,9 +6,10 @@
 
 #define LDR A0 // LDR pin - analog
 
-#define DELAY 10 // Time between color shift, in micro seconds
-unsigned long time_index, old_time_index = 0; //
-unsigned long global_index = 0;
+#define DELAY 50 // Time between color shift, in micro seconds
+
+unsigned long old_time_index = 0; // Global indexing
+unsigned long global_index = 0;   //
 
 float ALPHA = 0.95f; // Alpha value for complimentaty filter
 
@@ -29,6 +30,8 @@ void setup(void) {
   Serial.begin(115200);
 
   delay(100);
+
+  old_time_index = micros();
 }
 
 void shift_light() {
@@ -38,9 +41,9 @@ void shift_light() {
   unsigned long offset_g = 250000;
   unsigned long offset_b = 500000;
 
-  r = (sin((micros() + offset_r) * alpha_)) * 127.5 + 127.5;
-  g = (sin((micros() + offset_g) * alpha_)) * 127.5 + 127.5;
-  b = (sin((micros() + offset_b) * alpha_)) * 127.5 + 127.5;
+  // r = (sin((global_index + offset_r) * alpha_)) * 127.5 + 127.5;
+  // g = (sin((global_index + offset_g) * alpha_)) * 127.5 + 127.5;
+  b = (sin((global_index + offset_b) * alpha_)) * 127.5 + 127.5;
 }
 
 void light() {
@@ -53,10 +56,16 @@ void read() {
   int readVal = (analogRead(LDR) * ALPHA) + (previous_value * (1.0f - ALPHA));
   previous_value = analogRead(LDR);
 
-  Serial.println(String(r) + "," + String(g) + "," + String(b) + "," + String(readVal));
+  Serial.println(String(r) + "," + String(g) + "," + String(b) + "," +
+                 String(readVal));
 }
 
 void loop() {
+  if (micros() - old_time_index >= DELAY) {
+    old_time_index = micros();
+    global_index += 1;
+  }
+
   shift_light();
   light();
   read();
