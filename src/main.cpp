@@ -56,8 +56,7 @@ void read() {
   int readVal = (analogRead(LDR) * ALPHA) + (previous_value * (1.0f - ALPHA));
   previous_value = analogRead(LDR);
 
-  Serial.println(String(r) + "," + String(g) + "," + String(b) + "," +
-                 String(readVal));
+  Serial.println(String(r) + "," + String(g) + "," + String(b) + "," + String(readVal));
 }
 
 void loop() {
