@@ -1,31 +1,6 @@
-# --- PlatformIO / Arduino: byggartefakter ---
+.cache/
 .pio/
-compile_commands.json
-*.elf
-*.hex
-*.bin
-*.map
-
-# --- Editor och IDE (inget av detta behövs för bygget) ---
-.vscode/
-.idea/
-*.code-workspace
-
-# --- Python ---
-__pycache__/
-*.py[cod]
 .venv/
-venv/
-.ipynb_checkpoints/
-
-# --- Operativsystem ---
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# --- Tillfälliga mätfiler ---
-# Slaskfil i roten (t.ex. gamla standardutdata från record.py).
-# Sparade mätserier ligger i data/ och SKA versionshanteras.
-/data.csv
-data/_scratch/
-results/_scratch/
+.vscode/ 
+/compile_commands.json/
+/data.csv/
