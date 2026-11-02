@@ -41,8 +41,8 @@ void shift_light() {
   unsigned long offset_g = 250000;
   unsigned long offset_b = 500000;
 
-  // r = (sin((global_index + offset_r) * alpha_)) * 127.5 + 127.5;
-  // g = (sin((global_index + offset_g) * alpha_)) * 127.5 + 127.5;
+  r = (sin((global_index + offset_r) * alpha_)) * 127.5 + 127.5;
+  g = (sin((global_index + offset_g) * alpha_)) * 127.5 + 127.5;
   b = (sin((global_index + offset_b) * alpha_)) * 127.5 + 127.5;
 }
 
