@@ -1,12 +1,7 @@
-#include <Arduino.h>
-
 #define RED 11  // RGB LED pins
 #define BLUE 10 //
 #define GREEN 9 //
-
-#define LDR A0 // LDR pin - analog
-
-#define DELAY 50 // Time between color shift, in micro seconds
+#define LDR A0  // LDR pin - analog
 
 unsigned long old_time_index = 0; // Global indexing
 unsigned long global_index = 0;   //
@@ -29,7 +24,7 @@ void setup(void) {
 
   Serial.begin(115200);
 
-  delay(100);
+  delay(1000);
 
   old_time_index = micros();
 }
@@ -54,17 +49,12 @@ void light() {
 
 void read() {
   int readVal = (analogRead(LDR) * ALPHA) + (previous_value * (1.0f - ALPHA));
-  previous_value = analogRead(LDR);
+  previous_value = readVal;
 
   Serial.println(String(r) + "," + String(g) + "," + String(b) + "," + String(readVal));
 }
 
 void loop() {
-  if (micros() - old_time_index >= DELAY) {
-    old_time_index = micros();
-    global_index += 1;
-  }
-
   shift_light();
   light();
   read();
