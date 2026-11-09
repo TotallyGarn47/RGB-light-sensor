@@ -52,7 +52,7 @@ Koden består av tre filer som tillsammans bildar en mätkedja: Arduinon styr lj
 
 1. **Principen fungerar.** LDR:n följer LED-ljusets sinusvariation tydligt, i alla fyra körningarna.
 2. **Svaret är inverterat** (mer ljus → lägre värde). Det tyder på att LDR:n sitter i den nedre delen av en spänningsdelare, mot GND *(slutsats från datan, kopplingsschema saknas)*.
-3. **Dynamiken är mycket liten.** Hela signalen ligger nära ADC-taket (≈ 1012–1023), och en enskild färg ger bara 0,6–1 % av skalan. Med ett brusgolv på ± några steg är det svårt att skilja färger åt med nuvarande uppställning. Det tyder på att motståndsvärdet i spänningsdelaren inte är anpassat till LDR:ns resistans, eller att LDR och LED sitter för långt isär eller att omgivningsljuset är för starkt *(hypotes)*.
+3. **Dynamiken är mycket liten.** Hela signalen ligger nära ADC-taket (≈ 1012–1023), och en enskild färg ger bara 0,6–1 % av skalan. Med ett brusgolv på ± några steg är det svårt att skilja färger åt med nuvarande uppställning.
 4. **Ordningen mellan färgerna (grön ≳ röd > blå)** kan bero på att LDR:er ofta är känsligast i det gröna/gula området, men den kan lika gärna bero på att LED-kanalerna lyser olika starkt vid samma PWM-värde. Experimentet kan inte skilja dessa effekter åt utan en kalibrerad referens.
 
 ### 3.3 Går det att beräkna den exakta färgen på ljuset?
